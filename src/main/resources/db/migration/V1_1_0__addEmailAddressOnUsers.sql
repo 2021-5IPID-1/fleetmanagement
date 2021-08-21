@@ -1,0 +1,1 @@
+ALTER TABLE users add emailaddress varchar(255)

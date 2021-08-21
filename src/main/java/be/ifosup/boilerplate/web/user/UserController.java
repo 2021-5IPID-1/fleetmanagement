@@ -1,4 +1,4 @@
-package be.ifosup.boilerplate.controller.user;
+package be.ifosup.boilerplate.web.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
