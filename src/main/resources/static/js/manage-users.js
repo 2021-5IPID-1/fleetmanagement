@@ -7,6 +7,7 @@ $(document).ready( function () {
         "searching": false,
         "info" : true,
         "ordering": false,
+        "rowId": "id",
         "columns": [
             { "data": "id"},
             { "data": "firstname" },
@@ -16,4 +17,22 @@ $(document).ready( function () {
             { "data": "roles" }
         ]
     })
+
+    $('#manage-users tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+            $("#update-user").attr('href', "#");
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+
+            var currentId = $(this).attr("id");
+            var href = $("#update-user").attr("data-href");
+            var newHref = href.replace("#id", currentId);
+
+            $("#update-user").attr('href', newHref);
+        }
+    } );
+
 });

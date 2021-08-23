@@ -2,15 +2,14 @@ package be.ifosup.boilerplate.web.admin;
 
 import be.ifosup.boilerplate.dto.UserDTO;
 import be.ifosup.boilerplate.form.CreateUserForm;
+import be.ifosup.boilerplate.form.UpdateUserForm;
 import be.ifosup.boilerplate.services.UserService;
+import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,14 +26,21 @@ public class ManageUsersController {
 
     @GetMapping("/manage-users")
     public String manageUsersPage(Model model) {
-        model.addAttribute("users", userService.getUsers());
         return "admin/manage-users";
     }
 
     @GetMapping("/create-user-page")
-    public String createUserPage(CreateUserForm user, Model model) {
+    public String createUserPage(Model model) {
         model.addAttribute("user", new CreateUserForm());
         return "admin/user/create";
+    }
+
+    @GetMapping("/update-user-page/{id}")
+    public String userFormPage(@PathVariable("id") String id, Model model) {
+        UserDTO userDTO = userService.get(Long.valueOf(id));
+
+        model.addAttribute("user", userDTO != null ? userDTO : new CreateUserForm());
+        return "admin/user/update";
     }
 
     @PostMapping("/create-user")
@@ -43,6 +49,15 @@ public class ManageUsersController {
             return "admin/user/create";
         }
         userService.create(createUserForm);
-        return "admin/manage-users";
+        return "redirect:/admin/manage-users";
+    }
+
+    @PostMapping("/update-user")
+    public String validateUpdate(@Valid @ModelAttribute("user") UpdateUserForm updateUserForm, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            return "admin/user/update";
+        }
+        userService.update(updateUserForm);
+        return "redirect:/admin/manage-users";
     }
 }

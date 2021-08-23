@@ -2,10 +2,7 @@ package be.ifosup.boilerplate.entities;
 
 import be.ifosup.boilerplate.constants.RoleEnum;
 import be.ifosup.boilerplate.utils.BCryptManagerUtil;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

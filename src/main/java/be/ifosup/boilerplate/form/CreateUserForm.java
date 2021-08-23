@@ -6,16 +6,13 @@ import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
-public class CreateUserForm {
-    @NotEmpty(message = "First name obligatoire")
-    private String firstname;
-
-    @NotEmpty(message = "Last name obligatoire")
-    private String lastname;
+public class CreateUserForm extends UserForm {
+    @NotEmpty(message = "Password obligatoire")
+    @Size(min = 10, message = "Min 10 caratères")
+    private String password;
 
     @NotEmpty(message = "Email obligatoire")
     @Email
@@ -25,8 +22,4 @@ public class CreateUserForm {
     @NotEmpty(message = "Username obligatoire")
     @UniqueUsername
     private String username;
-
-    @NotEmpty(message = "Password obligatoire")
-    @Size(min = 10, message = "Min 10 caratères")
-    private String password;
 }

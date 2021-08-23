@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin / Users</title>
+</head>
+<body>
+    <h1>Create user page</h1>
+    <form th:action="@{/admin/update-user}" th:object="${user}" method="post">
+        <div>
+            <label for="firstname">firstname</label>
+            <input type="text" name="firstname" id="firstname" th:field="*{firstname}" autocomplete="false"/>
+            <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></span>
+        </div>
+        <div>
+            <label for="lastname">lastname</label>
+            <input type="text" name="lastname" id="lastname" th:field="*{lastname}" autocomplete="false"/>
+            <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
+        </div>
+        <div>
+            <label for="emailaddress">emailaddress</label>
+            <input type="email" name="emailaddress" id="emailaddress" th:field="*{emailaddress}" autocomplete="false" th:disabled="true"/>
+            <span th:if="${#fields.hasErrors('emailaddress')}" th:errors="*{emailaddress}"></span>
+        </div>
+        <div>
+            <label for="username">username</label>
+            <input type="text" name="username" id="username" th:field="*{username}" autocomplete="false" th:disabled="true"/>
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+        </div>
+        <div>
+            <input type="hidden" name="id" id="id" th:field="*{id}"/>
+        </div>
+        <div>
+            <button type="submit">save</button>
+        </div>
+    </form>
+</body>
+</html>
