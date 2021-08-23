@@ -1,27 +1,32 @@
 package be.ifosup.boilerplate.form;
 
+import be.ifosup.boilerplate.validator.email.UniqueEmail;
+import be.ifosup.boilerplate.validator.username.UniqueUsername;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
 public class CreateUserForm {
-    @NotNull(message = "First name obligatoire")
+    @NotEmpty(message = "First name obligatoire")
     private String firstname;
 
-    @NotNull(message = "Last name obligatoire")
+    @NotEmpty(message = "Last name obligatoire")
     private String lastname;
 
-    @NotNull(message = "Email obligatoire")
+    @NotEmpty(message = "Email obligatoire")
     @Email
+    @UniqueEmail
     private String emailaddress;
 
-    @NotNull(message = "Username obligatoire")
+    @NotEmpty(message = "Username obligatoire")
+    @UniqueUsername
     private String username;
 
-    @NotNull(message = "Password obligatoire")
+    @NotEmpty(message = "Password obligatoire")
     @Size(min = 10, message = "Min 10 caratères")
     private String password;
 }
