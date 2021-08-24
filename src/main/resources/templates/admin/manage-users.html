@@ -54,7 +54,7 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <a class="btn btn-primary" th:href="@{/admin/create-user-page}">Créer un utilisateur</a>
-                        <a class="btn btn-light" id="update-user" th:href="@{/admin/update-user-page/#id}" data-href="/admin/update-user-page/#id">Mettre à jour</a>
+                        <a class="btn btn-light disabled" id="update-user" th:href="@{/admin/update-user-page/#id}" data-href="/admin/update-user-page/#id">Mettre à jour</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -97,9 +97,6 @@
 
     <!-- Core plugin JavaScript-->
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
     <script src="/vendor/datatables/jquery.dataTables.min.js"></script>

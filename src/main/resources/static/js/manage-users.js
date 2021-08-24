@@ -22,6 +22,7 @@ $(document).ready( function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
             $("#update-user").attr('href', "#");
+            $("#update-user").addClass('disabled');
         }
         else {
             table.$('tr.selected').removeClass('selected');
@@ -32,6 +33,7 @@ $(document).ready( function () {
             var newHref = href.replace("#id", currentId);
 
             $("#update-user").attr('href', newHref);
+            $("#update-user").removeClass('disabled');
         }
     } );
 
