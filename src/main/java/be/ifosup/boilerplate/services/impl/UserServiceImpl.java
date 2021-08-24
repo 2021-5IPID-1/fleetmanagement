@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
                 .emailaddress(userInit.getEmailaddress())
                 .firstname(updateUserForm.getFirstname())
                 .lastname(updateUserForm.getLastname())
-                .password(BCryptManagerUtil.passwordEncoder().encode(userInit.getPassword()))
+                .password(userInit.getPassword())
                 .accountNonExpired(true)
                 .accountNonLocked(true)
                 .enabled(true)
