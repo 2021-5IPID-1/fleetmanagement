@@ -101,4 +101,15 @@ public class UserServiceImpl implements UserService {
 
         return userEntityToUserDTOConverter.convert(userEntity);
     }
+
+    @Override
+    public void delete(String id) {
+        userRepository.deleteById(Long.valueOf(id));
+    }
+
+    @Override
+    public UserDTO getUserByUserName(String userName) {
+        User byUsername = userRepository.findByUsername(userName);
+        return userEntityToUserDTOConverter.convert(byUsername);
+    }
 }

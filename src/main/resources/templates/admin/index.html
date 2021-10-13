@@ -8,5 +8,17 @@
     <h1>Admin page</h1>
     <a th:href="@{/admin/manage-users}">Manage users page</a>
     <a th:href="@{/admin/create-user-page}">Create user page</a>
+
+    <span th:utext="${user}">test</span>
+
+    <ul>
+        <li th:if="${user.role == 'ADMIN'}">
+            ADMIN
+        </li>
+        <li th:if="${user.role == 'ALL'}">
+            ALL
+        </li>
+    </ul>
+
 </body>
 </html>

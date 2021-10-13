@@ -17,7 +17,7 @@ import java.util.Set;
  * Permet de rediriger l'utilisateur sur un controller ou l'autre en fonction de son rôle
  */
 
-@Configuration
+//@Configuration
 public class CustomAuthentificationSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override

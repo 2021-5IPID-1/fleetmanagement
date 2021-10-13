@@ -28,18 +28,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * On déclare les services / utilitaires que l'on va utiliser
      */
     private final UserDetailsService userDetailsService;
-    private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
     /**
      * Définition du constructeur avec l'instance des services utilisés
      * @param userDetailsService
-     * @param authenticationSuccessHandler
      */
     @Autowired
-    public WebSecurityConfig(UserDetailsService userDetailsService,
-                             AuthenticationSuccessHandler authenticationSuccessHandler) {
+    public WebSecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
-        this.authenticationSuccessHandler = authenticationSuccessHandler;
     }
 
     /**
@@ -68,12 +64,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**", "/user/**").authenticated()
-                .antMatchers("/admin/**", "/admin/ws/**").hasAuthority(ADMIN_ROLE)
-                .antMatchers("/user/**").hasAuthority(USER_ROLE)
+                .antMatchers("/admin/**", "/admin/test/**").authenticated()
+                //.antMatchers("/admin/**").hasAuthority(USER_ROLE)
+                .antMatchers("/admin/test/**").hasAuthority(ADMIN_ROLE)
+                //.antMatchers("/user/**").hasAuthority(USER_ROLE)
                 .antMatchers("/*").permitAll()
             .and()
-                .formLogin().loginPage("/login").successHandler(authenticationSuccessHandler).failureUrl("/login")
+                .formLogin().loginPage("/login").defaultSuccessUrl("/admin").failureUrl("/login")
                 .usernameParameter("username").passwordParameter("password")
             .and()
                 .logout().invalidateHttpSession(true)

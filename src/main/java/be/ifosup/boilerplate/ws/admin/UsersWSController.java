@@ -4,6 +4,7 @@ import be.ifosup.boilerplate.config.common.datatables.DataTable;
 import be.ifosup.boilerplate.dto.UserDTO;
 import be.ifosup.boilerplate.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,5 +25,11 @@ public class UsersWSController {
         DataTable<UserDTO> usersDataTable = userService.getUsersDataTable(draw, start, length);
 
         return ResponseEntity.ok(usersDataTable);
+    }
+
+    @CrossOrigin(origins = "http://localhost:8081")
+    @DeleteMapping("{id}")
+    public void deleteUser(@PathVariable("id") String id) {
+        userService.delete(id);
     }
 }

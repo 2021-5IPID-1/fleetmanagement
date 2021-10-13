@@ -13,4 +13,6 @@ public interface UserService {
     DataTable<UserDTO> getUsersDataTable(int draw, int start, int length);
     UserDTO create(CreateUserForm createUserForm);
     UserDTO update(UpdateUserForm updateUserForm);
+    void delete(String id);
+    UserDTO getUserByUserName(String userName);
 }
